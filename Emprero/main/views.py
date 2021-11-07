@@ -7,8 +7,9 @@ def home(request):
     return render(request, 'main/home.html', {'title': 'Home', 'cards': cards})
 
 
-def description(request):
-    return render(request, 'main/description.html', {'title': 'Description'})
+def description(request, card_id):
+    card = Clothes.objects.get(pk=card_id)
+    return render(request, 'main/description.html', {'title': 'Description', 'card': card})
 
 
 def us(request):

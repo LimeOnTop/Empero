@@ -5,71 +5,73 @@
 		<title>{{ title }}</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="{% static 'main\css\uikit.css' %}">
-		<link rel="icon" type="image/png" href="{% static 'main\images\favicon-15x15.png' %}">
+		<link rel="icon" type="image/png" href="images\favicon-15x15.png">
 		<style>
-			body{
+			#bd{
 				min-height: 100vh;
-				display: flex;
-				flex-direction: column;
 			}
 		</style>
 	</head>
 	<body>
-		{% block header %}
-		<div style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);" uk-sticky="top: 100; animation: uk-animation-slide-top">
-			<nav class="uk-navbar-container" uk-navbar>
-				<div class="uk-navbar-center">
-					<div class="uk-navbar-center-left">
-						<a href="{% url 'home' %}" class="uk-navbar-item uk-logo">EMPRERO</a>
-					</div>
-					<div class="uk-margin-large-left uk-margin-large-right">
-						<ul class="uk-navbar-nav">
-							<li><a href="products-grid" uk-scroll>Товары</a></li>
-							<li><a href="{% url 'us'%}">О нас</a></li>
-							<li><a href="#">Контакты</a></li>
-						</ul>
-					</div>
-					<div class="uk-navbar-center-right uk-flex">
-						<div>
-							<a href="#" class="uk-navbar-item" uk-icon="icon: cart; ratio: 1.5"></a>
+		<div id="bd" class="uk-flex uk-flex-column">
+			{% block header %}
+			<div style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);" uk-sticky="top: 100; animation: uk-animation-slide-top">
+				<nav class="uk-navbar-container" uk-navbar>
+					<div class="uk-navbar-center">
+						<div class="uk-navbar-center-left">
+							<a href="{% url 'home' %}" class="uk-navbar-item uk-logo">EMPRERO</a>
 						</div>
-						<div>
-							<a href="#" class="uk-navbar-item" uk-icon="icon: user; ratio: 1.5"></a>
-						</div>
-					</div>
-				</div>
-			</nav>
-		</div>
-		{% endblock header %}
-		{% block content %}
-		{% endblock content %}
-		{% block footer %}
-		<div class="uk-margin-auto-top">
-			<nav class="uk-navbar-container" uk-navbar>
-				<div class="uk-navbar-center">
-					<div class="uk-navbar-center-left">
-						<a href="{% url 'home' %}" class="uk-navbar-item uk-logo">EMPRERO</a>
-					</div>
-					<div class="uk-margin-large-left uk-margin-large-right uk-navbar-item">
-						<div class="uk-margin-small-right">
-							<a href="#" class="uk-icon-button" uk-icon="icon: instagram; ratio: 1.5"></a>
-						</div>
-						<div class="uk-margin-small-left uk-margin-small-right">
-							<a href="#" class="uk-icon-button" uk-icon="icon: youtube; ratio: 1.5"></a>
-						</div>
-						<div class="uk-margin-small-left">
-							<a href="#" class="uk-icon-button" uk-icon="icon: google; ratio: 1.5"></a>
-						</div>
-					</div>
-					<div class="uk-navbar-center-right">
-						<div>
+						<div class="uk-margin-large-left uk-margin-large-right">
 							<ul class="uk-navbar-nav">
-								<li><a href="#">All right reserved.</a></li>
+								<li><a href="products-grid" uk-scroll>Товары</a></li>
+								<li><a href="{% url 'us'%}">О нас</a></li>
+								<li><a href="#">Контакты</a></li>
 							</ul>
 						</div>
+						<div class="uk-navbar-center-right uk-flex">
+							<div>
+								<a href="#" class="uk-navbar-item" uk-icon="icon: cart; ratio: 1.5"></a>
+							</div>
+							<div>
+								<a href="#" class="uk-navbar-item" uk-icon="icon: user; ratio: 1.5"></a>
+							</div>
+						</div>
 					</div>
-				</div>
-			</nav>
+				</nav>
+			</div>
+				{% endblock header %}
+			<div id="products-grid" class="uk-container uk-flex uk-margin-large">
+				{% block content %}
+				{% endblock content %}
+			</div>
+				{% block footer %}
+			<div class="uk-margin-auto-top">
+				<nav class="uk-navbar-container" uk-navbar>
+					<div class="uk-navbar-center">
+						<div class="uk-navbar-center-left">
+							<a href="{% url 'home' %}" class="uk-navbar-item uk-logo">EMPRERO</a>
+						</div>
+						<div class="uk-margin-large-left uk-margin-large-right uk-navbar-item">
+							<div class="uk-margin-small-right">
+								<a href="#" class="uk-icon-button" uk-icon="icon: instagram; ratio: 1.5"></a>
+							</div>
+							<div class="uk-margin-small-left uk-margin-small-right">
+								<a href="#" class="uk-icon-button" uk-icon="icon: youtube; ratio: 1.5"></a>
+							</div>
+							<div class="uk-margin-small-left">
+								<a href="#" class="uk-icon-button" uk-icon="icon: google; ratio: 1.5"></a>
+							</div>
+						</div>
+						<div class="uk-navbar-center-right">
+							<div>
+								<ul class="uk-navbar-nav">
+									<li><a href="#">All right reserved.</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</div>
 		</div>
 		{% endblock footer %}
 		<script src="{% static 'main\js\uikit.js' %}"></script>

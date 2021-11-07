@@ -1,138 +1,94 @@
-<!DOCTYPE html>
+{% extends 'main/Emprero.html' %}
 {% load static %}
-<html>
-	<head>
-		<title>{{title}}</title>
-		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="{% static 'main\css\uikit.css' %}">
-		<link rel="icon" type="image/png" href="{% static 'main\images\favicon-15x15.png' %}">
-	</head>
-	<body>
-		<div style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);" uk-sticky="top: 100; animation: uk-animation-slide-top">
-			<nav class="uk-navbar-container" uk-navbar>
-				<div class="uk-navbar-center">
-					<div class="uk-navbar-center-left">
-						<a href="{% url 'home' %}" class="uk-navbar-item uk-logo">EMPRERO</a>
-					</div>
-					<div class="uk-margin-large-left uk-margin-large-right">
-						<ul class="uk-navbar-nav">
-							<li><a href="#">Товары</a></li>
-							<li><a href="#">О нас</a></li>
-							<li><a href="#">Контакты</a></li>
-						</ul>
-					</div>
-					<div class="uk-navbar-center-right uk-flex">
-						<div>
-							<a href="#" class="uk-navbar-item" uk-icon="icon: cart; ratio: 1.5"></a>
-						</div>
-						<div>
-							<a href="#" class="uk-navbar-item" uk-icon="icon: user; ratio: 1.5"></a>
-						</div>
-					</div>
-				</div>
-			</nav>
-		</div>
-		<div class="uk-container uk-margin-auto  uk-margin-large">
-			<div class="uk-card uk-card-default uk-grid-collapse" uk-grid>
-				<div class="uk-card-media-left uk-width-3-5">
-					<div class="uk-position-relative" uk-slideshow="animation: push; autoplay: true; autoplay-interval: 6000; pause-on-hover: true">
-            			<ul class="uk-slideshow-items">
-                			<li>
-                    			<img src="{% static 'main\images\TommyJeans.png' %}" class="uk-position-center">
-                			</li>
-                			<li>
-                    			<img src="{% static 'main\images\TommyJeans-close.png' %}" class="uk-position-center">
-                			</li>
-                			<li>
-                    			<img src="{% static 'main\images\TommyJeans-wear-1.png' %}" class="uk-position-center">
-                			</li>
-                			<li>
-                    			<img src="{% static 'main\images\TommyJeans-wear-2.png' %}" class="uk-position-center">
-                			</li>
-            			</ul>
-            			<ul class="uk-position-small uk-position-bottom-center uk-slideshow-nav uk-dotnav uk-flex-center"></ul>
-        			</div>
-        		</div>
-        		<div class="uk-card-body uk-width-2-5 uk-padding">
-        			<div>
-						<h3>Tommy Jeans</h3>
-						<p class="uk-text-muted">розовый худи</p>
-					</div>
-					<div class="uk-margin-top">
-						<p class="uk-text-muted">Выберите размер</p>
-					</div>
-        			<div class="uk-grid-small uk-margin-bottom" uk-grid>
-        				<div>
-        					<button class="uk-button uk-button-default">S</button>
-        				</div>
-        				<div>
-        					<button class="uk-button uk-button-default">M</button>
-						</div>
-						<div>
-        					<button class="uk-button uk-button-default">L</button>
-        				</div>
-        				<div>
-        				<button class="uk-button uk-button-default">XL</button>
-        				</div>
-        			</div>
-        			<div>
-        				<p class="uk-text-muted">Доставим ваш заказ:</p>
-        			</div>
-        			<div>
-	        			<div class="uk-inline-block">
-	        				<a uk-icon="icon: mail"></a>
-	        			</div>
-	        			<div class="uk-inline-block">
-	        				<p class="uk-text-muted">по почте</p>
-	        			</div>
-	        		</div>
-	        		<div>
-	        			<div class="uk-inline-block">
-	        				<a uk-icon="icon: home"></a>
-	        			</div>
-	        			<div class="uk-inline-block">
-	        				<p class="uk-text-muted">по адресу, курьером, с примеркой</p>
-	        			</div>
-	        		</div>
-        			<div class="uk-child-width-1-2 uk-margin" uk-grid>
-        				<div>
-	        				<button class="uk-button uk-button-default uk-width-1-1">Купить</button>
-        				</div>	
-	        			<div>
-	        				<button class="uk-button uk-button-default uk-width-1-1">В корзину</button>
-	        			</div>
-	        		</div>
-        		</div>
-			</div>
-		</div>
-		<div class="uk-position-relative">
-			<nav class="uk-navbar-container" uk-navbar>
-				<div class="uk-navbar-center">
-					<div class="uk-navbar-center-left">
-						<a href="{% url 'home' %}" class="uk-navbar-item uk-logo">EMPRERO</a>
-					</div>
-					<div class="uk-margin-large-left uk-margin-large-right uk-navbar-item">
-						<div class="uk-margin-small-right">
-							<a href="#" class="uk-icon-button" uk-icon="icon: instagram; ratio: 1.5"></a>
-						</div>
-						<div class="uk-margin-small-left uk-margin-small-right">
-							<a href="#" class="uk-icon-button" uk-icon="icon: youtube; ratio: 1.5"></a>
-						</div>
-						<div class="uk-margin-small-left">
-							<a href="#" class="uk-icon-button" uk-icon="icon: google; ratio: 1.5"></a>
-						</div>
-					</div>
-					<div class="uk-navbar-center-right">
-						<div>
-							<ul class="uk-navbar-nav">	
-								<li><a href="#">All right reserved.</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</nav>
-		</div>
-		<script src="{% static 'main\js\uikit.js' %}"></script>
-		<script src="{% static 'main\js\uikit-icons.js' %}"></script>
-	</body>
-</html>
+
+
+{% block content %}
+<div class="uk-card uk-card-default uk-grid-collapse" uk-grid>
+    <div class="uk-card-media-left uk-width-xlarge@xl">
+        <div class="uk-position-relative" tabindex="-1"
+             uk-slideshow=" min-height: 550; animation: push; autoplay: true; autoplay-interval: 6000; pause-on-hover: true">
+            <ul class="uk-slideshow-items">
+                <li>
+                    <img src="{{card.photo_1.url}}" uk-cover>
+                </li>
+                <li>
+                    <img src="{{card.photo_2.url}}" uk-cover>
+                </li>
+                <li>
+                    <img src="{{card.photo_3.url}}" uk-cover>
+                </li>
+            </ul>
+            <div class="uk-position-small uk-position-bottom-center">
+                <ul class="uk-slideshow-nav uk-dotnav uk-flex-center"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="uk-card-body uk-width-xlarge@xl uk-width-xlarge uk-padding">
+        <div class="uk-flex">
+            <div class="uk-margin-auto-right uk-width-3-5">
+                <dl class="uk-description-list">
+                    <div class="uk-text-bold uk-text-large uk-text-muted">
+                        <dt>{{card.title}}</dt>
+                    </div>
+                    <div class="uk-text-small uk-text-muted">
+                        <dd>{{card.description}}</dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="uk-margin-auto-left">
+                <dl class="uk-description-list">
+                    <div class="uk-text-bold uk-text-large uk-text-muted uk-margin-small uk-width-expand">
+                        <dd>{{card.price}} руб</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+        <div class="uk-margin-small-bottom uk-margin-medium-top">
+            <p class="uk-text-muted">Выберите размер</p>
+        </div>
+        <div class="uk-margin-bottom uk-grid-small uk-child-width-1-4" uk-grid>
+            <div>
+                <button class="uk-button uk-button-default uk-width-expand">S</button>
+            </div>
+            <div>
+                <button class="uk-button uk-button-default uk-width-expand">M</button>
+            </div>
+            <div>
+                <button class="uk-button uk-button-default uk-width-expand">L</button>
+            </div>
+            <div>
+                <button class="uk-button uk-button-default uk-width-expand">XL</button>
+            </div>
+        </div>
+        <div class="uk-margin-medium">
+            <div>
+                <p class="uk-text-muted">Доставим ваш заказ:</p>
+            </div>
+            <div>
+                <div class="uk-inline-block">
+                    <a uk-icon="icon: mail"></a>
+                </div>
+                <div class="uk-inline-block">
+                    <p class="uk-text-muted">по почте</p>
+                </div>
+            </div>
+            <div>
+                <div class="uk-inline-block">
+                    <a uk-icon="icon: home"></a>
+                </div>
+                <div class="uk-inline-block">
+                    <p class="uk-text-muted">по адресу, курьером, с примеркой</p>
+                </div>
+            </div>
+        </div>
+        <div class="uk-child-width-1-2" uk-grid>
+            <div>
+                <button class="uk-button uk-button-default uk-width-1-1">Купить</button>
+            </div>
+            <div>
+                <button class="uk-button uk-button-default uk-width-1-1">В корзину</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
