@@ -5,17 +5,21 @@
 		<title>{{ title }}</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="{% static 'main\css\uikit.css' %}">
-		<link rel="icon" type="image/png" href="images\favicon-15x15.png">
+		<link rel="icon" type="image/png" href="{% static '../images/favicon-15x15.png' %}">
+
 		<style>
 			#bd{
 				min-height: 100vh;
+			}
+			#header{
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 			}
 		</style>
 	</head>
 	<body>
 		<div id="bd" class="uk-flex uk-flex-column">
 			{% block header %}
-			<div style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);" uk-sticky="top: 100; animation: uk-animation-slide-top">
+			<div id="header" uk-sticky="top: 100; animation: uk-animation-slide-top">
 				<nav class="uk-navbar-container" uk-navbar>
 					<div class="uk-navbar-center">
 						<div class="uk-navbar-center-left">
@@ -23,14 +27,18 @@
 						</div>
 						<div class="uk-margin-large-left uk-margin-large-right">
 							<ul class="uk-navbar-nav">
-								<li><a href="products-grid" uk-scroll>Товары</a></li>
+								{% if title == 'Home' %}
+									<li><a href="products-grid" uk-scroll>Товары</a></li>
+								{% else %}
+									<li><a href="{% url 'home' %}">Товары</a></li>
+								{% endif %}
 								<li><a href="{% url 'us'%}">О нас</a></li>
-								<li><a href="#">Контакты</a></li>
+								<li><a href="{% url 'contacts'%}">Контакты</a></li>
 							</ul>
 						</div>
 						<div class="uk-navbar-center-right uk-flex">
 							<div>
-								<a href="#" class="uk-navbar-item" uk-icon="icon: cart; ratio: 1.5"></a>
+								<a href="{% url 'cart' %}" class="uk-navbar-item" uk-icon="icon: cart; ratio: 1.5"></a>
 							</div>
 							<div>
 								<a href="#" class="uk-navbar-item" uk-icon="icon: user; ratio: 1.5"></a>
@@ -40,7 +48,7 @@
 				</nav>
 			</div>
 				{% endblock header %}
-			<div id="products-grid" class="uk-container uk-flex uk-margin-large">
+			<div class="uk-container uk-margin-large" style="width: 90%">
 				{% block content %}
 				{% endblock content %}
 			</div>

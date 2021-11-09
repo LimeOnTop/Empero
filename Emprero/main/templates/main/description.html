@@ -3,90 +3,93 @@
 
 
 {% block content %}
-<div class="uk-card uk-card-default uk-grid-collapse" uk-grid>
-    <div class="uk-card-media-left uk-width-xlarge@xl">
-        <div class="uk-position-relative" tabindex="-1"
-             uk-slideshow=" min-height: 550; animation: push; autoplay: true; autoplay-interval: 6000; pause-on-hover: true">
-            <ul class="uk-slideshow-items">
-                <li>
-                    <img src="{{card.photo_1.url}}" uk-cover>
-                </li>
-                <li>
-                    <img src="{{card.photo_2.url}}" uk-cover>
-                </li>
-                <li>
-                    <img src="{{card.photo_3.url}}" uk-cover>
-                </li>
-            </ul>
-            <div class="uk-position-small uk-position-bottom-center">
-                <ul class="uk-slideshow-nav uk-dotnav uk-flex-center"></ul>
+<div>
+    <div class="uk-card uk-card-default uk-grid-collapse" uk-grid>
+        <div class="uk-card-media-left uk-width-1-2@m uk-cover-container">
+            <div class="uk-position-relative" tabindex="-1"
+                 uk-slideshow=" min-height: 550; animation: push; autoplay: true; autoplay-interval: 6000; pause-on-hover: true">
+                <ul class="uk-slideshow-items">
+                    <li>
+                        <img src="{{card.photo_1.url}}" uk-cover>
+                    </li>
+                    <li>
+                        <img src="{{card.photo_2.url}}" uk-cover>
+                    </li>
+                    <li>
+                        <img src="{{card.photo_3.url}}" uk-cover>
+                    </li>
+                </ul>
+                <div class="uk-position-small uk-position-bottom-center">
+                    <ul class="uk-slideshow-nav uk-dotnav uk-flex-center"></ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="uk-card-body uk-width-xlarge@xl uk-width-xlarge uk-padding">
-        <div class="uk-flex">
-            <div class="uk-margin-auto-right uk-width-3-5">
-                <dl class="uk-description-list">
-                    <div class="uk-text-bold uk-text-large uk-text-muted">
-                        <dt>{{card.title}}</dt>
+        <div class="uk-card-body uk-width-1-2@m uk-padding">
+            <div class="uk-flex">
+                <div class="uk-margin-auto-right uk-width-3-5">
+                    <dl class="uk-description-list">
+                        <div class="uk-text-bold uk-text-large uk-text-muted">
+                            <dt>{{card.title}}</dt>
+                        </div>
+                        <div class="uk-text-small uk-text-muted">
+                            <dd>{{card.description}}</dd>
+                        </div>
+                    </dl>
+                </div>
+                <div class="uk-margin-auto-left">
+                    <dl class="uk-description-list">
+                        <div class="uk-text-bold uk-text-large uk-text-muted uk-margin-small uk-width-expand">
+                            <dd>{{card.price}} руб</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+            <div class="uk-margin-small-bottom uk-margin-medium-top">
+                <p class="uk-text-muted">Выберите размер</p>
+            </div>
+            <div class="uk-margin-bottom uk-grid-small uk-child-width-1-4" uk-grid>
+                <div>
+                    <button class="uk-button uk-button-default uk-width-expand">S</button>
+                </div>
+                <div>
+                    <button class="uk-button uk-button-default uk-width-expand">M</button>
+                </div>
+                <div>
+                    <button class="uk-button uk-button-default uk-width-expand">L</button>
+                </div>
+                <div>
+                    <button class="uk-button uk-button-default uk-width-expand">XL</button>
+                </div>
+            </div>
+            <div class="uk-margin-medium">
+                <div>
+                    <p class="uk-text-muted">Доставим ваш заказ:</p>
+                </div>
+                <div>
+                    <div class="uk-inline-block">
+                        <a uk-icon="icon: mail"></a>
                     </div>
-                    <div class="uk-text-small uk-text-muted">
-                        <dd>{{card.description}}</dd>
+                    <div class="uk-inline-block">
+                        <p class="uk-text-muted">по почте</p>
                     </div>
-                </dl>
-            </div>
-            <div class="uk-margin-auto-left">
-                <dl class="uk-description-list">
-                    <div class="uk-text-bold uk-text-large uk-text-muted uk-margin-small uk-width-expand">
-                        <dd>{{card.price}} руб</dd>
+                </div>
+                <div>
+                    <div class="uk-inline-block">
+                        <a uk-icon="icon: home"></a>
                     </div>
-                </dl>
-            </div>
-        </div>
-        <div class="uk-margin-small-bottom uk-margin-medium-top">
-            <p class="uk-text-muted">Выберите размер</p>
-        </div>
-        <div class="uk-margin-bottom uk-grid-small uk-child-width-1-4" uk-grid>
-            <div>
-                <button class="uk-button uk-button-default uk-width-expand">S</button>
-            </div>
-            <div>
-                <button class="uk-button uk-button-default uk-width-expand">M</button>
-            </div>
-            <div>
-                <button class="uk-button uk-button-default uk-width-expand">L</button>
-            </div>
-            <div>
-                <button class="uk-button uk-button-default uk-width-expand">XL</button>
-            </div>
-        </div>
-        <div class="uk-margin-medium">
-            <div>
-                <p class="uk-text-muted">Доставим ваш заказ:</p>
-            </div>
-            <div>
-                <div class="uk-inline-block">
-                    <a uk-icon="icon: mail"></a>
-                </div>
-                <div class="uk-inline-block">
-                    <p class="uk-text-muted">по почте</p>
+                    <div class="uk-inline-block">
+                        <p class="uk-text-muted">по адресу, курьером, с примеркой</p>
+                    </div>
                 </div>
             </div>
-            <div>
-                <div class="uk-inline-block">
-                    <a uk-icon="icon: home"></a>
+            <div class="uk-child-width-1-2" uk-grid>
+                <div>
+                    <button class="uk-button uk-button-default uk-width-1-1">Купить</button>
                 </div>
-                <div class="uk-inline-block">
-                    <p class="uk-text-muted">по адресу, курьером, с примеркой</p>
+
+                <div>
+                    <button id="addToCart" type="submit" class="addToCart uk-button uk-button-default uk-width-1-1">В корзину</button>
                 </div>
-            </div>
-        </div>
-        <div class="uk-child-width-1-2" uk-grid>
-            <div>
-                <button class="uk-button uk-button-default uk-width-1-1">Купить</button>
-            </div>
-            <div>
-                <button class="uk-button uk-button-default uk-width-1-1">В корзину</button>
             </div>
         </div>
     </div>

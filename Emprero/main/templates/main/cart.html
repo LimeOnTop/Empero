@@ -1,0 +1,41 @@
+{% extends 'main\Emprero.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="uk-child-width-1-1">
+    {% for card in cards %}
+    <div>
+        <a class="uk-link-reset" href="{{card.get_absolute_url}}">
+            <div class="uk-card uk-card-default uk-grid-collapse uk-margin" uk-grid>
+                <div class="uk-card-media-left uk-width-1-6 uk-cover-container">
+                    <img src="{{card.photo_1.url}}" uk-cover>
+                    <canvas height="200"></canvas>
+                </div>
+                <div class="uk-card-body uk-padding uk-width-5-6">
+                    <div class="uk-flex">
+                        <div class="uk-margin-auto-right uk-width-3-5">
+                            <dl class="uk-description-list">
+                                <div class="uk-text-bold uk-text-large uk-text-muted">
+                                    <dt>{{card.title}}</dt>
+                                </div>
+                                <div class="uk-text-small uk-text-muted">
+                                    <dd>{{card.description}}</dd>
+                                </div>
+                            </dl>
+                        </div>
+                        <div class="uk-margin-auto-left">
+                            <dl class="uk-description-list">
+                                <div class="uk-text-bold uk-text-large uk-text-muted">
+                                    <dd>{{card.price}} руб</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
