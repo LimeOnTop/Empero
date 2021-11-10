@@ -57,6 +57,7 @@ class Cart(ListView):
         return Clothes.objects.filter(picked=True)
 
 
-def register(request):
-    # form = RegisterForm()
-    return
+class Login(ListView):
+    model = Clothes
+    template_name = 'main/login.html'
+    extra_context = {'title': 'Login'}

@@ -3,7 +3,7 @@
 
 
 {% block content %}
-<div id="products-grid" class="uk-grid-match uk-child-width-1-3@m uk-child-width-1-2" uk-grid>
+<div id="products-grid" class="uk-grid-match uk-child-width-1-3@m uk-child-width-1-2@s uk-child-width-1-1" uk-grid>
     {% for card in cards %}
     <div>
         <div class="uk-card uk-card-hover uk-card-default">
@@ -40,7 +40,7 @@
         {% if page_obj.has_other_pages %}
         {% if page_obj.has_previous %}
         <li>
-            <a href="?page={{ page_obj.number|add:-1 }}"><span uk-pagination-previous></span></a>
+            <a href="?page={{ page_obj.previous_page_number }}"><span uk-pagination-previous></span></a>
         </li>
         {% endif %}
         {% for pages in paginator.page_range %}
@@ -56,7 +56,7 @@
         {% endfor %}
         {% if page_obj.has_next %}
         <li>
-            <a href="?page={{ page_obj.number|add:1 }}"><span uk-pagination-next></span></a>
+            <a href="?page={{ page_obj.next_page_number }}"><span uk-pagination-next></span></a>
         </li>
         {% endif %}
         {% endif %}

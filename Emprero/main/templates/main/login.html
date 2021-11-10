@@ -1,0 +1,30 @@
+{% extends 'main\Emprero.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="uk-card uk-card-default uk-grid-collapse" uk-grid>
+    <div class="uk-card-media-left uk-width-1-4 uk-cover-container">
+        <img src="{% static '../images/favicon-180x180.png'%}" uk-cover>
+        <canvas height="600"></canvas>
+    </div>
+    <div class="uk-card-body uk-width-expand uk-padding">
+        <div class="uk-margin uk-flex uk-flex-center">
+            <h1>О нас</h1>
+        </div>
+        <div class="uk-margin uk-flex uk-flex-center uk-text-justify">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sollicitudin diam sed ante facilisis, a
+                gravida ex tristique. Donec faucibus, arcu vel ultrices ullamcorper, turpis libero commodo lacus, at
+                mollis justo neque at tortor. Sed dictum vel sapien ac posuere. Vivamus ligula augue, finibus quis nisi
+                sit amet, convallis vehicula arcu. Integer ipsum est, commodo vel tempor non, bibendum vitae risus. Sed
+                elementum dapibus felis vel rutrum. Ut purus magna, maximus nec condimentum vel, lacinia vel diam. Nulla
+                tincidunt arcu non dolor finibus fermentum. Maecenas vehicula viverra mauris, id dictum purus tincidunt
+                sed. Duis quis fermentum sem. In lacus elit.</p>
+        </div>
+    </div>
+    <div class="uk-card-media-right uk-width-1-4 uk-cover-container">
+        <img src="{% static '../images/favicon-180x180.png' %}" uk-cover>
+        <canvas height="600"></canvas>
+    </div>
+</div>
+{% endblock content %}

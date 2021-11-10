@@ -1,88 +1,187 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
-	<head>
-		<title>{{ title }}</title>
-		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="{% static 'main\css\uikit.css' %}">
-		<link rel="icon" type="image/png" href="{% static '../images/favicon-15x15.png' %}">
+<head>
+    <title>{{ title }}</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'main\css\uikit.css' %}">
+    <link rel="icon" type="image/png" href="{% static '../images/favicon-15x15.png' %}">
 
-		<style>
+    <style>
 			#bd{
 				min-height: 100vh;
 			}
 			#header{
 				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 			}
-		</style>
-	</head>
-	<body>
-		<div id="bd" class="uk-flex uk-flex-column">
-			{% block header %}
-			<div id="header" uk-sticky="top: 100; animation: uk-animation-slide-top">
-				<nav class="uk-navbar-container" uk-navbar>
-					<div class="uk-navbar-center">
-						<div class="uk-navbar-center-left">
-							<a href="{% url 'home' %}" class="uk-navbar-item uk-logo">EMPRERO</a>
-						</div>
-						<div class="uk-margin-large-left uk-margin-large-right">
-							<ul class="uk-navbar-nav">
-								{% if title == 'Home' %}
-									<li><a href="products-grid" uk-scroll>Товары</a></li>
-								{% else %}
-									<li><a href="{% url 'home' %}">Товары</a></li>
-								{% endif %}
-								<li><a href="{% url 'us'%}">О нас</a></li>
-								<li><a href="{% url 'contacts'%}">Контакты</a></li>
-							</ul>
-						</div>
-						<div class="uk-navbar-center-right uk-flex">
-							<div>
-								<a href="{% url 'cart' %}" class="uk-navbar-item" uk-icon="icon: cart; ratio: 1.5"></a>
-							</div>
-							<div>
-								<a href="#" class="uk-navbar-item" uk-icon="icon: user; ratio: 1.5"></a>
-							</div>
-						</div>
-					</div>
-				</nav>
-			</div>
-				{% endblock header %}
-			<div class="uk-container uk-margin-large" style="width: 90%">
-				{% block content %}
-				{% endblock content %}
-			</div>
-				{% block footer %}
-			<div class="uk-margin-auto-top">
-				<nav class="uk-navbar-container" uk-navbar>
-					<div class="uk-navbar-center">
-						<div class="uk-navbar-center-left">
-							<a href="{% url 'home' %}" class="uk-navbar-item uk-logo">EMPRERO</a>
-						</div>
-						<div class="uk-margin-large-left uk-margin-large-right uk-navbar-item">
-							<div class="uk-margin-small-right">
-								<a href="#" class="uk-icon-button" uk-icon="icon: instagram; ratio: 1.5"></a>
-							</div>
-							<div class="uk-margin-small-left uk-margin-small-right">
-								<a href="#" class="uk-icon-button" uk-icon="icon: youtube; ratio: 1.5"></a>
-							</div>
-							<div class="uk-margin-small-left">
-								<a href="#" class="uk-icon-button" uk-icon="icon: google; ratio: 1.5"></a>
-							</div>
-						</div>
-						<div class="uk-navbar-center-right">
-							<div>
-								<ul class="uk-navbar-nav">
-									<li><a href="#">All right reserved.</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</nav>
-			</div>
-		</div>
-		{% endblock footer %}
-		<script src="{% static 'main\js\uikit.js' %}"></script>
-		<script src="{% static 'main\js\uikit-icons.js' %}"></script>
-	</body>
+			.text-dark{
+			    color: #999 !important
+			   }
+			.text-dark:hover{
+			    color: #666 !important
+			}
+			.active-text-dark{
+			    color: #333 !important
+			}
+			.logo-text-dark{
+			    color: #666 !important
+			}
+
+    </style>
+</head>
+<body>
+<div id="bd" class="uk-flex uk-flex-column uk-child-width-1-1">
+    {% block header %}
+    <div id="header" uk-sticky="top: 100; animation: uk-animation-slide-top">
+        <nav class="uk-navbar-container uk-visible@s" uk-navbar>
+            <div class="uk-navbar-center">
+                <div class="uk-navbar-center-left ">
+                    <a href="{% url 'home' %}" class="uk-navbar-item uk-logo">EMPRERO</a>
+                </div>
+                <div class="uk-margin-large-left uk-margin-large-right">
+                    <ul class="uk-navbar-nav">
+                        {% if title == 'Home' %}
+                        <li class="uk-active"><a href="products-grid" uk-scroll>Товары</a></li>
+                        {% else %}
+                        <li><a href="{% url 'home' %}">Товары</a></li>
+                        {% endif %}
+                        {% if title == 'About us' %}
+                        <li class="uk-active"><a href="{% url 'us'%}">О нас</a></li>
+                        {% else %}
+                        <li><a href="{% url 'us'%}">О нас</a></li>
+                        {% endif %}
+                        {% if title == 'Contacts' %}
+                        <li class="uk-active"><a href="{% url 'contacts'%}">Контакты</a></li>
+                        {% else %}
+                        <li><a href="{% url 'contacts'%}">Контакты</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="uk-navbar-center-right uk-flex">
+                    <div>
+                        {% if title == 'Cart' %}
+                        <a class="uk-navbar-item uk-navbar-toggle uk-margin-small-right active-text-dark"
+                           uk-icon="icon: cart; ratio: 1.5"></a>
+                        {% else %}
+                        <a href="{% url 'cart' %}" class="uk-navbar-item uk-navbar-toggle uk-margin-small-right"
+                           uk-icon="icon: cart; ratio: 1.5"></a>
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% if title == 'Login' %}
+                        <a class="uk-navbar-toggle uk-navbar-item uk-padding-remove active-text-dark">
+                            <div class="uk-text-large">Войти</div>
+                        </a>
+                        {% else %}
+                        <a class="uk-navbar-toggle uk-navbar-item uk-padding-remove" href="{% url 'login' %}">
+                            <div class="uk-text-large">Войти</div>
+                        </a>
+                        {% endif %}
+                        <!--<div>
+                            <a href="#" class="uk-navbar-item" uk-icon="icon: user; ratio: 1.5"></a>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav class="uk-navbar-container uk-hidden@s" uk-navbar>
+            <div class="uk-navbar-left">
+                <a href="{% url 'home' %}" class="uk-navbar-item uk-logo">EMPRERO</a>
+            </div>
+            <div class="uk-navbar-right">
+                <a class="uk-navbar-toggle uk-navbar-item uk-hidden@s" uk-navbar-toggle-icon
+                   uk-toggle="target: #menu"></a>
+            </div>
+        </nav>
+    </div>
+    <div id="menu" uk-offcanvas="flip:true; mode:reveal; overlay:true">
+        <div class="uk-offcanvas-bar uk-flex uk-flex-column uk-background-muted">
+            <button class="uk-offcanvas-close" type="button" uk-close></button>
+            <div class="uk-nav-center">
+                <a href="{% url 'home' %}" class="uk-logo logo-text-dark">EMPRERO</a>
+            </div>
+            <div class="uk-nav-center uk-margin-large">
+                <ul class="uk-nav uk-nav-primary">
+                    {% if title == 'Login' %}
+                    <li><a class="active-text-dark uk-text-large">Войти</a></li>
+                    {% else %}
+                    <li><a class="text-dark uk-text-large" href="{% url 'login' %}" >Войти</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
+                {% if title == 'Home' %}
+                <li><a class="active-text-dark">Товары</a></li>
+                {% else %}
+                <li><a class="text-dark" href="{% url 'home' %}">Товары</a></li>
+                {% endif %}
+                {% if title == 'About us' %}
+                <li><a class="active-text-dark">О нас</a></li>
+                {% else %}
+                <li><a class="text-dark" href="{% url 'us'%}">О нас</a></li>
+                {% endif %}
+                {% if title == 'Contacts' %}
+                <li><a class="active-text-dark">Контакты</a></li>
+                {% else %}
+                <li><a class="text-dark" href="{% url 'contacts'%}">Контакты</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    {% endblock header %}
+    <div class="uk-container uk-margin-large">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    {% block footer %}
+    <div class="uk-margin-auto-top">
+        <nav class="uk-navbar-container uk-visible@s" uk-navbar>
+            <div class="uk-navbar-center">
+                <div class="uk-navbar-center-left">
+                    <a href="{% url 'home' %}" class="uk-navbar-item uk-logo">EMPRERO</a>
+                </div>
+                <div class="uk-margin-large-left uk-margin-large-right uk-navbar-item">
+                    <div class="uk-margin-small-right">
+                        <a href="#" class="uk-icon-button" uk-icon="icon: instagram; ratio: 1.5"></a>
+                    </div>
+                    <div class="uk-margin-small-left uk-margin-small-right">
+                        <a href="#" class="uk-icon-button" uk-icon="icon: youtube; ratio: 1.5"></a>
+                    </div>
+                    <div class="uk-margin-small-left">
+                        <a href="#" class="uk-icon-button" uk-icon="icon: google; ratio: 1.5"></a>
+                    </div>
+                </div>
+                <div class="uk-navbar-center-right">
+                    <div>
+                        <ul class="uk-navbar-nav">
+                            <li><a href="#" class="uk-padding-remove">All right reserved.</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav class="uk-navbar-container uk-hidden@s" uk-navbar>
+            <div class="uk-navbar-left">
+                <a href="{% url 'home' %}" class="uk-navbar-item uk-logo">EMPRERO</a>
+            </div>
+            <div class="uk-navbar-right">
+                <div class="uk-navbar-item">
+                    <div class="uk-margin-small-right">
+                        <a href="#" class="uk-icon-button" uk-icon="icon: instagram; ratio: 1.5"></a>
+                    </div>
+                    <div class="uk-margin-small-left uk-margin-small-right">
+                        <a href="#" class="uk-icon-button" uk-icon="icon: youtube; ratio: 1.5"></a>
+                    </div>
+                    <div class="uk-margin-small-left">
+                        <a href="#" class="uk-icon-button" uk-icon="icon: google; ratio: 1.5"></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+{% endblock footer %}
+<script src="{% static 'main\js\uikit.js' %}"></script>
+<script src="{% static 'main\js\uikit-icons.js' %}"></script>
+</body>
 </html>
