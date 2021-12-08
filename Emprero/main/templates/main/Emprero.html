@@ -27,6 +27,8 @@
 			    color: #666 !important
 			}
 
+
+
     </style>
 </head>
 <body>
@@ -68,6 +70,12 @@
                         {% endif %}
                     </div>
                     <div>
+                        {% if request.user.is_authenticated %}
+                        <div>
+                            <a href="{% url 'profile' %}" class="uk-navbar-item uk-navbar-toggle"
+                               uk-icon="icon: user; ratio: 1.5"></a>
+                        </div>
+                        {% else %}
                         {% if title == 'Login' %}
                         <a class="uk-navbar-toggle uk-navbar-item uk-padding-remove active-text-dark">
                             <div class="uk-text-large">Войти</div>
@@ -77,9 +85,7 @@
                             <div class="uk-text-large">Войти</div>
                         </a>
                         {% endif %}
-                        <!--<div>
-                            <a href="#" class="uk-navbar-item" uk-icon="icon: user; ratio: 1.5"></a>
-                        </div>-->
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -105,7 +111,7 @@
                     {% if title == 'Login' %}
                     <li><a class="active-text-dark uk-text-large">Войти</a></li>
                     {% else %}
-                    <li><a class="text-dark uk-text-large" href="{% url 'login' %}" >Войти</a></li>
+                    <li><a class="text-dark uk-text-large" href="{% url 'login' %}">Войти</a></li>
                     {% endif %}
                 </ul>
             </div>

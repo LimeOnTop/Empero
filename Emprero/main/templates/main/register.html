@@ -1,0 +1,41 @@
+{% extends 'main/Emprero.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="uk-card uk-card-default uk-grid-collapse" uk-grid>
+    <div class="uk-card-media-left uk-width-1-4 uk-visible@s uk-cover-container">
+        <img src="{% static '../images/favicon-180x180.png'%}" uk-cover>
+        <canvas height="600"></canvas>
+    </div>
+    <div class="uk-card-body uk-width-expand uk-padding-large">
+        <div class="uk-flex uk-flex-center">
+            <h1>Регистрация</h1>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            {% for forms in form %}
+            <div class="uk-margin uk-child-width-1-1">
+                <div class="uk-inline uk-flex uk-flex-center">
+                    <span class="uk-form-icon" uk-icon="icon: {{forms.label}}"></span>
+                    {{forms}}
+                </div>
+            </div>
+            {% endfor %}
+            <div class="uk-margin uk-flex uk-flex-center">
+                <button class="uk-button uk-button-default uk-width-1-1" type="submit">Зарегестрироваться</button>
+            </div>
+        </form>
+        <div class="uk-margin-small uk-text-center">
+            <p>Уже зарегестрированы? <a href="{% url 'login' %}">Войдите</a></p>
+        </div>
+        <div class="uk-margin uk-text-center">
+            <p>Зарегестрируйтесь для получения персональных предложений</p>
+        </div>
+    </div>
+    <div class="uk-card-media-right uk-width-1-4 uk-visible@s uk-cover-container">
+        <img src="{% static '../images/favicon-180x180.png' %}" uk-cover>
+        <canvas height="600"></canvas>
+    </div>
+</div>
+{% endblock content %}

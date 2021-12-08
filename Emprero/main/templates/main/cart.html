@@ -1,4 +1,4 @@
-{% extends 'main\Emprero.html' %}
+{% extends 'main/Emprero.html' %}
 {% load static %}
 
 
@@ -37,5 +37,16 @@
         </a>
     </div>
     {% endfor %}
+    <div class="uk-text-muted uk-text-bold uk-text-large uk-flex uk-flex-right uk-margin">
+        <div class="uk-margin-small-right">
+            <span class="uk-text-middle">Итоговая стоимость:</span>
+        </div>
+        <div class="uk-margin-small-right">
+            <span class="uk-text-middle">{{summary_price}} руб</span>
+        </div>
+    </div>
+    <div>
+        <button type="button" class="uk-button uk-button-large uk-width-1-1 uk-button-default">Оформить заказ</button>
+    </div>
 </div>
 {% endblock content %}
