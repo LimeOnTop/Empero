@@ -1,12 +1,15 @@
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
+from django.views.decorators.http import require_POST
 
 from .forms import RegisterUserForm, LoginUserForm
 from .models import *
 from django.views.generic import ListView, DetailView, CreateView
+from .cart import SessionCart
+from django.conf import settings
 
 library = [{'title': 'Home'},
            {'title': 'Description'},
@@ -19,7 +22,7 @@ def index(request):
     return redirect('home')
 
 
-class Home(ListView):
+class HomeView(ListView):
     model = Clothes
     template_name = 'main/home.html'
     context_object_name = 'cards'
@@ -29,53 +32,59 @@ class Home(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['library'] = library
+        context['session'] = self.request.session.get(settings.CART_SESSION_ID)
         return context
 
 
-class Description(DetailView):
+@require_POST
+def cart_add(request, card_id, size):
+    cart = SessionCart(request)
+    product = get_object_or_404(Clothes, id=card_id)
+    cart.add(product=product,size=size)
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
+def card_delete(request, card_id):
+    cart = SessionCart(request)
+    product = get_object_or_404(Clothes, id=card_id)
+    cart.remove(product=product)
+    return redirect('cart')
+
+
+class DescriptionView(DetailView):
     model = Clothes
     slug_url_kwarg = 'card_slug'
     template_name = 'main/description.html'
     context_object_name = 'card'
-    extra_context = {'title': 'Description'}
+    size = 'M'
+    extra_context = {'title': 'Description', 'size': size}
 
 
-class Us(ListView):
+class UsView(ListView):
     model = Clothes
     template_name = 'main/us.html'
     extra_context = {'title': 'About us'}
 
 
-class Contacts(ListView):
+class ContactsView(ListView):
     model = Clothes
     template_name = 'main/contacts.html'
     extra_context = {'title': 'Contacts'}
 
 
-def check_sum():
-    summary_price = 0
-    for card in Clothes.objects.filter(picked=True):
-        summary_price += card.price
-    return summary_price
+def cart(request):
+    cart = SessionCart(request)
+    total_price = cart.total_price()
+    return render(request, 'main/cart.html', {'title': 'Cart', 'cart': cart, 'total_price': total_price})
 
 
-class Cart(ListView):
-    model = Clothes
-    template_name = 'main/cart.html'
-    context_object_name = 'cards'
-    extra_context = {'title': 'Cart', 'summary_price': check_sum()}
-
-    def get_queryset(self):
-        return Clothes.objects.filter(picked=True)
-
-
-class Login(LoginView):
+class LoginView(LoginView):
     form_class = LoginUserForm
     template_name = 'main/login.html'
     extra_context = {'title': 'Login'}
 
 
-class Register(CreateView):
+class RegisterView(CreateView):
     form_class = RegisterUserForm
     template_name = 'main/register.html'
     extra_context = {'title': 'Register'}
@@ -87,9 +96,8 @@ class Register(CreateView):
         return redirect('home')
 
 
-class Profile(DetailView):
+class ProfileView(DetailView):
     model = User
-    # slug_url_kwarg = '???'
     template_name = 'main/profile.html'
     context_object_name = 'user'
     extra_context = {'title': 'Profile'}

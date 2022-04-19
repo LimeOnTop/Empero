@@ -4,37 +4,54 @@
 
 {% block content %}
 <div class="uk-child-width-1-1">
-    {% for card in cards %}
+    {% for card in cart %}
     <div>
-        <a class="uk-link-reset" href="{{card.get_absolute_url}}">
-            <div class="uk-card uk-card-default uk-grid-collapse uk-margin" uk-grid>
-                <div class="uk-card-media-left uk-width-1-6 uk-cover-container">
-                    <img src="{{card.photo_1.url}}" uk-cover>
+        <div class="uk-card uk-card-default uk-grid-collapse uk-margin" uk-grid>
+            <div class="uk-card-media-left uk-width-1-6 uk-cover-container">
+                <a class="uk-link-reset" href="{{card.product.get_absolute_url}}">
+                    <img src="{{card.product.photo_1.url}}" uk-cover>
                     <canvas height="200"></canvas>
-                </div>
-                <div class="uk-card-body uk-padding uk-width-5-6">
-                    <div class="uk-flex">
-                        <div class="uk-margin-auto-right uk-width-3-5">
+                </a>
+            </div>
+            <div class="uk-card-body uk-padding uk-width-5-6">
+                <div class="uk-flex">
+                    <div class="uk-margin-auto-right uk-width-3-5 uk-width-2-5@s">
+                        <a class="uk-link-reset" href="{{card.product.get_absolute_url}}">
                             <dl class="uk-description-list">
                                 <div class="uk-text-bold uk-text-large uk-text-muted">
-                                    <dt>{{card.title}}</dt>
+                                    <dt>{{card.product.title}}</dt>
                                 </div>
                                 <div class="uk-text-small uk-text-muted">
-                                    <dd>{{card.description}}</dd>
+                                    <dd>{{card.product.description}}</dd>
                                 </div>
                             </dl>
-                        </div>
-                        <div class="uk-margin-auto-left">
-                            <dl class="uk-description-list">
-                                <div class="uk-text-bold uk-text-large uk-text-muted">
-                                    <dd>{{card.price}} руб</dd>
-                                </div>
-                            </dl>
+                        </a>
+                    </div>
+                    <div class="uk-margin-auto">
+                        <dl class="uk-description-list">
+                            <div class="uk-text-bold uk-text-large uk-text-muted">
+                                <dd> Размер: {{card.size}}</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="uk-margin-auto">
+                        <dl class="uk-description-list">
+                            <div class="uk-text-bold uk-text-large uk-text-muted">
+                                <dd>{{card.quantity}} шт</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="uk-margin-auto-left uk-margin-right">
+                        <div class="uk-text-bold uk-text-large uk-text-muted">
+                            {{card.product.price}} руб
                         </div>
                     </div>
                 </div>
+                <div class="uk-position-small uk-button-link uk-position-top-right ">
+                    <a class="uk-icon-link" href="{%url 'card_delete' card.product.id %}" uk-icon="icon: close; ratio: 1.3"></a>
+                </div>
             </div>
-        </a>
+        </div>
     </div>
     {% endfor %}
     <div class="uk-text-muted uk-text-bold uk-text-large uk-flex uk-flex-right uk-margin">
@@ -42,7 +59,7 @@
             <span class="uk-text-middle">Итоговая стоимость:</span>
         </div>
         <div class="uk-margin-small-right">
-            <span class="uk-text-middle">{{summary_price}} руб</span>
+            <span class="uk-text-middle">{{total_price}} руб</span>
         </div>
     </div>
     <div>

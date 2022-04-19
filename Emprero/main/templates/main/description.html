@@ -47,20 +47,20 @@
             <div class="uk-margin-small-bottom uk-margin-medium-top">
                 <p class="uk-text-muted">Выберите размер</p>
             </div>
-            <div class="uk-margin-bottom uk-grid-small uk-child-width-1-4" uk-grid>
-                <div>
+            <ul class="uk-margin-bottom uk-grid-small uk-child-width-1-4" uk-grid>
+                <li>
                     <button class="uk-button uk-button-default uk-width-expand">S</button>
-                </div>
-                <div>
+                </li>
+                <li>
                     <button class="uk-button uk-button-default uk-width-expand">M</button>
-                </div>
-                <div>
+                </li>
+                <li>
                     <button class="uk-button uk-button-default uk-width-expand">L</button>
-                </div>
-                <div>
+                </li>
+                <li>
                     <button class="uk-button uk-button-default uk-width-expand">XL</button>
-                </div>
-            </div>
+                </li>
+            </ul>
             <div class="uk-margin">
                 <div>
                     <p class="uk-text-muted">Доставим ваш заказ:</p>
@@ -86,10 +86,12 @@
                 <div>
                     <button class="uk-button uk-button-default uk-width-1-1">Купить</button>
                 </div>
-
-                <div>
-                    <button type="submit" class="uk-button uk-button-default uk-width-1-1">В корзину</button>
-                </div>
+                <form action="{% url 'cart_add' card.id size%}" method="post">
+                    {% csrf_token %}
+                    <div>
+                        <button type="submit" class="uk-button uk-button-default uk-width-1-1">В корзину</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
     --primary: #d6d6d6;
     --secondary: #f8f8f8;
     --accent: #666;
-    --primary-fg: #fff;
+    --primary-fg: #333;
     --body-fg: #333;
     --body-bg: #fff;
     --body-quiet-color: #666;
@@ -29,8 +29,8 @@
     --button-fg: #fff;
     --button-bg: var(--primary);
     --button-hover-bg: #609ab6;
-    --default-button-bg: var(--secondary);
-    --default-button-hover-bg: #205067;
+    --default-button-bg: var(--primary);
+    --default-button-hover-bg: #333;
     --close-button-bg: #888;
     --close-button-hover-bg: #747474;
     --delete-button-bg: #ba2121;

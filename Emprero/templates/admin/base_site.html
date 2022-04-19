@@ -1,8 +1,9 @@
 {% extends "admin/base.html" %}
 {%load static %}
 
-{% blo ck extrastyle %}
+{% block extrastyle %}
 <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+<link rel="icon" type="image/png" href="{% static '../images/favicon-15x15.png' %}">
 {% endblock %}
 
 {% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}

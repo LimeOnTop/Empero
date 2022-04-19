@@ -134,3 +134,4 @@ CACHES = {
         'LOCATION': os.path.join(BASE_DIR, 'Emprero_cache'),
     }
 }
+CART_SESSION_ID = 'cart'
