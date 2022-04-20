@@ -5,9 +5,9 @@ from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.decorators.http import require_POST
 
-from .forms import RegisterUserForm, LoginUserForm
+from .forms import RegisterUserForm, LoginUserForm, SizeForm
 from .models import *
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, FormView
 from .cart import SessionCart
 from django.conf import settings
 
@@ -32,16 +32,20 @@ class HomeView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['library'] = library
-        context['session'] = self.request.session.get(settings.CART_SESSION_ID)
         return context
 
 
 @require_POST
-def cart_add(request, card_id, size):
+def cart_add(request, card_id):
     cart = SessionCart(request)
-    product = get_object_or_404(Clothes, id=card_id)
-    cart.add(product=product,size=size)
-    return redirect(request.META.get('HTTP_REFERER'))
+    form = SizeForm(request.POST)
+    if form.is_valid():
+        product = get_object_or_404(Clothes, id=card_id)
+        cart.add(product=product, size= form.cleaned_data['size'])
+        if 'buy' in request.POST:
+            return redirect('cart')
+        else:
+            return redirect(request.META.get('HTTP_REFERER'))
 
 
 def card_delete(request, card_id):
@@ -51,13 +55,13 @@ def card_delete(request, card_id):
     return redirect('cart')
 
 
-class DescriptionView(DetailView):
+class DescriptionView(DetailView, FormView):
     model = Clothes
+    form_class = SizeForm
     slug_url_kwarg = 'card_slug'
     template_name = 'main/description.html'
     context_object_name = 'card'
-    size = 'M'
-    extra_context = {'title': 'Description', 'size': size}
+    extra_context = {'title': 'Description'}
 
 
 class UsView(ListView):

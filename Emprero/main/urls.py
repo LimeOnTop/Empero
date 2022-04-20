@@ -12,6 +12,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('register/',RegisterView.as_view(), name='register'),
     path('profile/', ProfileView.as_view(), name='profile'),
-    path('add/<int:card_id>/<str:size>/', cart_add, name='cart_add'),
+    path('add/<int:card_id>/', cart_add, name='cart_add'),
     path('del/<int:card_id>/', card_delete, name='card_delete'),
 ]

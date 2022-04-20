@@ -25,3 +25,8 @@ class LoginUserForm(AuthenticationForm):
         attrs={'class': 'uk-input', 'placeholder': 'Введите свой логин или почту'}))
     password = forms.CharField(label='lock', widget=forms.PasswordInput(
         attrs={'class': 'uk-input', 'placeholder': 'Введите свой пароль'}))
+
+
+class SizeForm(forms.Form):
+    size = forms.ChoiceField(
+        widget=forms.Select(attrs={'class': 'uk-select'}),choices=[('S', 'S'), ('M', 'M'), ('L', 'L'), ('XL', 'XL')])

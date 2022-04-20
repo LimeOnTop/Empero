@@ -44,55 +44,45 @@
                     </dl>
                 </div>
             </div>
-            <div class="uk-margin-small-bottom uk-margin-medium-top">
-                <p class="uk-text-muted">Выберите размер</p>
-            </div>
-            <ul class="uk-margin-bottom uk-grid-small uk-child-width-1-4" uk-grid>
-                <li>
-                    <button class="uk-button uk-button-default uk-width-expand">S</button>
-                </li>
-                <li>
-                    <button class="uk-button uk-button-default uk-width-expand">M</button>
-                </li>
-                <li>
-                    <button class="uk-button uk-button-default uk-width-expand">L</button>
-                </li>
-                <li>
-                    <button class="uk-button uk-button-default uk-width-expand">XL</button>
-                </li>
-            </ul>
-            <div class="uk-margin">
-                <div>
-                    <p class="uk-text-muted">Доставим ваш заказ:</p>
+            <form action="{% url 'cart_add' card.id %}" method="post">
+                {% csrf_token %}
+                <div class="uk-margin-small-bottom uk-margin-medium-top">
+                    <p class="uk-text-muted">Выберите размер</p>
                 </div>
-                <div class="uk-flex">
-                    <div class="uk-margin-small-right">
-                        <a uk-icon="icon: mail"></a>
+                {{ form.size }}
+                <div class="uk-margin">
+                    <div>
+                        <p class="uk-text-muted">Доставим ваш заказ:</p>
+                    </div>
+                    <div class="uk-flex">
+                        <div class="uk-margin-small-right">
+                            <a uk-icon="icon: mail"></a>
+                        </div>
+                        <div>
+                            <p class="uk-text-muted">по почте</p>
+                        </div>
+                    </div>
+                    <div class="uk-flex">
+                        <div class="uk-margin-small-right">
+                            <a uk-icon="icon: home"></a>
+                        </div>
+                        <div>
+                            <p class="uk-text-muted">по адресу, курьером, с примеркой</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-child-width-1-2" uk-grid>
+                    <div>
+                        <button type="submit" name="buy" class="uk-button uk-button-default uk-width-1-1">Купить
+                        </button>
                     </div>
                     <div>
-                        <p class="uk-text-muted">по почте</p>
+                        <button type="submit" name="to_cart" class="uk-button uk-button-default uk-width-1-1">В
+                            корзину
+                        </button>
                     </div>
                 </div>
-                <div class="uk-flex">
-                    <div class="uk-margin-small-right">
-                        <a uk-icon="icon: home"></a>
-                    </div>
-                    <div>
-                        <p class="uk-text-muted">по адресу, курьером, с примеркой</p>
-                    </div>
-                </div>
-            </div>
-            <div class="uk-child-width-1-2" uk-grid>
-                <div>
-                    <button class="uk-button uk-button-default uk-width-1-1">Купить</button>
-                </div>
-                <form action="{% url 'cart_add' card.id size%}" method="post">
-                    {% csrf_token %}
-                    <div>
-                        <button type="submit" class="uk-button uk-button-default uk-width-1-1">В корзину</button>
-                    </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
 </div>

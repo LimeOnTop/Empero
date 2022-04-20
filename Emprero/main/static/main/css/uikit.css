@@ -433,7 +433,7 @@ pre code {
 /* Selection pseudo-element
  ========================================================================== */
 ::selection {
-  background: #39f;
+  background: #b2b2b2;
   color: #fff;
   text-shadow: none;
 }
@@ -1540,7 +1540,7 @@ button.uk-icon:not(:disabled) {
   outline: none;
   background-color: #fff;
   color: #666;
-  border-color: #1e87f0;
+  border-color: #b2b2b2;
 }
 /* Disabled */
 .uk-input:disabled,

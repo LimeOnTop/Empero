@@ -30,20 +30,20 @@
                     <div class="uk-margin-auto">
                         <dl class="uk-description-list">
                             <div class="uk-text-bold uk-text-large uk-text-muted">
-                                <dd> Размер: {{card.size}}</dd>
+                                <dd> <span class="uk-text-normal">Размер:</span> {{card.size}}</dd>
                             </div>
                         </dl>
                     </div>
                     <div class="uk-margin-auto">
                         <dl class="uk-description-list">
                             <div class="uk-text-bold uk-text-large uk-text-muted">
-                                <dd>{{card.quantity}} шт</dd>
+                                <dd>{{card.quantity}} <span class="uk-text-default uk-text-normal">шт</span></dd>
                             </div>
                         </dl>
                     </div>
                     <div class="uk-margin-auto-left uk-margin-right">
                         <div class="uk-text-bold uk-text-large uk-text-muted">
-                            {{card.product.price}} руб
+                            {{card.product.price}} <span class="uk-text-default uk-text-normal">руб</span>
                         </div>
                     </div>
                 </div>
@@ -56,14 +56,14 @@
     {% endfor %}
     <div class="uk-text-muted uk-text-bold uk-text-large uk-flex uk-flex-right uk-margin">
         <div class="uk-margin-small-right">
-            <span class="uk-text-middle">Итоговая стоимость:</span>
+            <span class="uk-text-normal">Итоговая стоимость:</span>
         </div>
         <div class="uk-margin-small-right">
-            <span class="uk-text-middle">{{total_price}} руб</span>
+            {{total_price}} <span class="uk-text-default uk-text-normal">руб</span>
         </div>
     </div>
-    <div>
-        <button type="button" class="uk-button uk-button-large uk-width-1-1 uk-button-default">Оформить заказ</button>
+    <div class="uk-flex uk-flex-right">
+        <button type="button" class="uk-width-1-3 uk-button uk-button-large uk-button-default">Оформить заказ</button>
     </div>
 </div>
 {% endblock content %}

@@ -27,6 +27,9 @@ class SessionCart:
         product_id = str(product.id)
         if product_id not in self.cart:
             self.cart[product_id] = {'size': size, 'quantity': 1, 'price': str(product.price)}
+        elif size not in self.cart[product_id]:
+            self.cart[product_id]['size'] += ', ' + size
+            self.cart[product_id]['quantity'] += quantity
         else:
             self.cart[product_id]['quantity'] += quantity
         self.save()
