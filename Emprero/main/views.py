@@ -24,6 +24,7 @@ def index(request):
 
 class HomeView(ListView):
     model = Clothes
+    queryset = Clothes.objects.filter(available=True)
     template_name = 'main/home.html'
     context_object_name = 'cards'
     extra_context = {'title': 'Home'}
@@ -40,17 +41,18 @@ def cart_add(request, card_id):
     cart = SessionCart(request)
     form = SizeForm(request.POST)
     if form.is_valid():
-        product = get_object_or_404(Clothes, id=card_id)
-        cart.add(product=product, size= form.cleaned_data['size'])
+        size = form.cleaned_data['size']
+        product = get_object_or_404(ClothesSizes, cloth=card_id, size__name=size)
+        cart.add(product=product)
         if 'buy' in request.POST:
             return redirect('cart')
         else:
             return redirect(request.META.get('HTTP_REFERER'))
 
 
-def card_delete(request, card_id):
+def card_delete(request, card_id, card_size):
     cart = SessionCart(request)
-    product = get_object_or_404(Clothes, id=card_id)
+    product = get_object_or_404(ClothesSizes, cloth=card_id, size__name=card_size)
     cart.remove(product=product)
     return redirect('cart')
 

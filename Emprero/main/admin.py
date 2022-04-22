@@ -7,14 +7,14 @@ from .models import *
 
 
 class ClothesAdmin(admin.ModelAdmin):
-    list_display = ('title', 'price', 'sale', 'get_html_photo', 'cat', 'picked')
+    list_display = ('title', 'price', 'sale', 'get_html_photo', 'cat', 'available')
     list_display_links = ('title', 'sale')
-    search_fields = ('title', 'price', 'id', 'description', 'picked')
-    list_editable = ('picked',)
-    list_filter = ('picked', 'sale', 'cat')
+    search_fields = ('title', 'price', 'id', 'description', 'available')
+    list_editable = ('available',)
+    list_filter = ('available', 'sale', 'cat')
     prepopulated_fields = {'slug': ('title',)}
     fields = (
-        'title', 'slug', 'description', 'cat', 'photo_1', 'get_html_photo', 'photo_2', 'photo_3', 'picked', 'price',
+        'title', 'slug', 'description', 'cat', 'photo_1', 'get_html_photo', 'photo_2', 'photo_3', 'available', 'price',
         'sale')
     readonly_fields = ('get_html_photo',)
 
@@ -32,5 +32,12 @@ class CategoriesAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 
+class SizesAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+    list_display_links = ('name',)
+    search_fields = ('id', 'name')
+
+
 admin.site.register(Clothes, ClothesAdmin)
 admin.site.register(Categories, CategoriesAdmin)
+admin.site.register(Sizes, SizesAdmin)

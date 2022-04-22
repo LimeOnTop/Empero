@@ -13,5 +13,5 @@ urlpatterns = [
     path('register/',RegisterView.as_view(), name='register'),
     path('profile/', ProfileView.as_view(), name='profile'),
     path('add/<int:card_id>/', cart_add, name='cart_add'),
-    path('del/<int:card_id>/', card_delete, name='card_delete'),
+    path('del/<int:card_id>/<str:card_size>', card_delete, name='card_delete'),
 ]

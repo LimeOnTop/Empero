@@ -1,6 +1,6 @@
 from django.conf import settings
 
-from main.models import Clothes
+from main.models import *
 
 
 class SessionCart:
@@ -13,9 +13,9 @@ class SessionCart:
 
     def __iter__(self):
         product_ids = self.cart.keys()
-        products = Clothes.objects.filter(id__in=product_ids)
+        products = ClothesSizes.objects.filter(id__in=product_ids)
         for product in products:
-            self.cart[str(product.id)]['product'] = product
+            self.cart[str(product.id)]['product'] = product.cloth
         for item in self.cart.values():
             item['total_price'] = item['quantity'] * item['price']
             yield item
@@ -23,13 +23,13 @@ class SessionCart:
     def __len__(self):
         return sum(item['quantity'] for item in self.cart.values())
 
-    def add(self, product, quantity=1, size='M'):
+    def add(self, product, quantity=1):
         product_id = str(product.id)
         if product_id not in self.cart:
-            self.cart[product_id] = {'size': size, 'quantity': 1, 'price': str(product.price)}
-        elif size not in self.cart[product_id]:
-            self.cart[product_id]['size'] += ', ' + size
-            self.cart[product_id]['quantity'] += quantity
+            self.cart[product_id] = {'size': str(product.size.name),'quantity': 1, 'price': str(product.cloth.price)}
+        # elif size not in self.cart[product_id]:
+            # self.cart[product_id]['size'] += ', ' + size
+            # self.cart[product_id]['quantity'] += quantity
         else:
             self.cart[product_id]['quantity'] += quantity
         self.save()

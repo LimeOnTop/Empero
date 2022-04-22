@@ -10,7 +10,7 @@ class Clothes(models.Model):
     photo_3 = models.ImageField(upload_to="images", verbose_name='Photo 3')
     price = models.IntegerField(verbose_name='Price')
     sale = models.IntegerField(verbose_name='Sale')
-    picked = models.BooleanField(default=False, verbose_name='Picked')
+    available = models.BooleanField(default=False, verbose_name='Available')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='URL')
     cat = models.ForeignKey('Categories', on_delete=models.PROTECT, null=True, verbose_name='Category')
 
@@ -37,3 +37,21 @@ class Categories(models.Model):
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
         ordering = ['name', ]
+
+
+class Sizes(models.Model):
+    name = models.CharField(max_length=100, db_index=True, verbose_name='Size')
+    clothes = models.ManyToManyField('Clothes', through='ClothesSizes', related_name='size')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Size'
+        verbose_name_plural = 'Sizes'
+        ordering = ['name', ]
+
+
+class ClothesSizes(models.Model):
+    size = models.ForeignKey('Sizes', on_delete=models.PROTECT, null=True, verbose_name='Size_id')
+    cloth = models.ForeignKey('Clothes', on_delete=models.PROTECT, null=True, verbose_name='Cloth_id')
