@@ -4,6 +4,7 @@
 <head>
     <title>{{ title }}</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'main\css\uikit.css' %}">
     <link rel="icon" type="image/png" href="{% static '../images/favicon-15x15.png' %}">
 
@@ -130,6 +131,13 @@
                 <li><a class="active-text-dark">Контакты</a></li>
                 {% else %}
                 <li><a class="text-dark" href="{% url 'contacts'%}">Контакты</a></li>
+                {% endif %}
+                {% if title == 'Cart' %}
+                <li><a class="active-text-dark" uk-icon="icon: cart; ratio:1.5">Корзина</a></li>
+                {% else %}
+                <li>
+                    <a class="text-dark" href="{% url 'cart'%}" uk-icon="icon: cart; ratio:1.5">Корзина</a>
+                </li>
                 {% endif %}
             </ul>
         </div>

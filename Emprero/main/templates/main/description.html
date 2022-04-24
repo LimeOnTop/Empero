@@ -7,8 +7,8 @@
     <div class="uk-card uk-card-default uk-grid-collapse" uk-grid>
         <div class="uk-card-media-left uk-width-1-2@m uk-cover-container">
             <div class="uk-position-relative" tabindex="-1"
-                 uk-slideshow=" min-height: 600; animation: push; autoplay: true; autoplay-interval: 6000; pause-on-hover: true">
-                <ul class="uk-slideshow-items">
+                 uk-slideshow="animation: push; autoplay: true; autoplay-interval: 6000; pause-on-hover: true">
+                <ul class="uk-slideshow-items" uk-height-viewport="offset-bottom: 40">
                     <li>
                         <img src="{{card.photo_1.url}}" uk-cover>
                     </li>
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="uk-child-width-1-2" uk-grid>
+                <div class="uk-child-width-1-2 uk-grid-small" uk-grid>
                     <div>
                         <button type="submit" name="buy" class="uk-button uk-button-default uk-width-1-1">Купить
                         </button>
